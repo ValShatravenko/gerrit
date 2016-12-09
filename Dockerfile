@@ -23,6 +23,13 @@ RUN chown gerrit2:gerrit2 ${GERRIT_HOME}
 
 USER gerrit2
 
+RUN mkdir ${GERRIT_HOME}/plugins
+WORKDIR ${GERRIT_HOME}/plugins
+
+RUN wget https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar
+RUN wget https://gerrit-ci.gerritforge.com/job/plugin-delete-project-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/delete-project/delete-project.jar
+RUN wget https://gerrit-ci.gerritforge.com/job/plugin-download-commands-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/download-commands/download-commands.jar
+
 WORKDIR ${GERRIT_HOME}
 RUN wget https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
 
