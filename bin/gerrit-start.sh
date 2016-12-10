@@ -8,6 +8,9 @@ for f in $(ls $GERRIT_HOME/plugins); do
   fi
 done
 
+mv $GERRIT_HOME/Gerrit* $GERRIT_SITE/etc/
+mv $GERRIT_HOME/octo* $GERRIT_SITE/static/
+
 java -jar $GERRIT_WAR reindex -d $GERRIT_SITE
 
 java -jar $GERRIT_WAR daemon -d $GERRIT_SITE --console-log

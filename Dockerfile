@@ -33,4 +33,10 @@ RUN wget https://gerrit-ci.gerritforge.com/job/plugin-download-commands-master/l
 WORKDIR ${GERRIT_HOME}
 RUN wget https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
 
+# Add OctoGerrit
+ADD GerritSite.css ${GERRIT_HOME}
+ADD GerritSiteFooter.html ${GERRIT_HOME}
+ADD octogerrit.js ${GERRIT_HOME}
+
+
 EXPOSE 8080 29418
