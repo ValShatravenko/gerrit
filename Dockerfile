@@ -39,6 +39,12 @@ RUN chown -R ${GERRIT_USER}:${GERRIT_USER} ${GERRIT_HOME}
 
 USER ${GERRIT_USER}
 
+# Add OctoGerrit
+ADD GerritSite.css ${GERRIT_HOME}
+ADD GerritSiteFooter.html ${GERRIT_HOME}
+ADD octogerrit.js ${GERRIT_HOME}
+
+
 EXPOSE 8080 29418
 
 ENTRYPOINT ["kaigara"]
