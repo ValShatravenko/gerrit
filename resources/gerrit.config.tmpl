@@ -1,0 +1,21 @@
+[gerrit]
+  basePath = {{.development.gerrit.basePath}}
+  canonicalWebUrl = http://localhost:8080/
+[database]
+  type = {{.development.database.type}}
+	database = /var/gerrit/review_site/db/ReviewDB
+[auth]
+	type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+[receive]
+	enableSignedPush = false
+[sendemail]
+	smtpServer = localhost
+[container]
+	user = gerrit2
+	javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
+[sshd]
+	listenAddress = *:29418
+[httpd]
+	listenUrl = http://*:8080/
+[cache]
+	directory = cache
