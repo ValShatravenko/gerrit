@@ -30,14 +30,10 @@ RUN wget https://gerrit-ci.gerritforge.com/job/plugin-download-commands-master/l
 WORKDIR ${GERRIT_HOME}
 RUN wget https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
 
-## <[ Kaigara
-ENV KAIGARA_VERSION v0.0.3
-RUN wget --quiet https://github.com/mod/kaigara/releases/download/$KAIGARA_VERSION/kaigara-linux-amd64-$KAIGARA_VERSION.tar.gz \
-    && tar -C /usr/local/bin -xzvf kaigara-linux-amd64-$KAIGARA_VERSION.tar.gz
-
+# Install Kaigara
+RUN curl -L https://kaigara.org/get | sh
 COPY operations /opt/kaigara/operations
 COPY resources /etc/kaigara/resources
-## Kaigara ]>
 
 RUN chown -R ${GERRIT_USER}:${GERRIT_USER} ${GERRIT_HOME}
 
