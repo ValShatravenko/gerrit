@@ -4,6 +4,9 @@ set -x
 
 kaigara render gerrit.config > ${GERRIT_SITE}/etc/gerrit.config
 
+echo "Render configuration"
+cat ${GERRIT_SITE}/etc/gerrit.config
+
 for f in $(ls $GERRIT_HOME/plugins); do
   if [ ! -L $GERRIT_SITE/plugins/$f ]; then
     ln -sf $GERRIT_HOME/plugins/$f $GERRIT_SITE/plugins/$f

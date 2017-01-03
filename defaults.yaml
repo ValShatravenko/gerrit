@@ -1,0 +1,10 @@
+gerrit:
+  basePath: "/var/gerrit/review_site/git"
+  canonicalWebUrl: "http://localhost:8080/"
+auth:
+  type: DEVELOPMENT_BECOME_ANY_ACCOUNT
+database:
+  type: h2
+  database: "/var/gerrit/review_site/db/ReviewDB"
+sendemail:
+  smtpServer: localhost

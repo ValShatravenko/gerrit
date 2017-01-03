@@ -2,4 +2,4 @@
 
 set -x
 
-chown -R gerrit2 ${GERRIT_HOME}
+chown -R ${GERRIT_USER} ${GERRIT_HOME}

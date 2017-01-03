@@ -1,5 +1,5 @@
 NAME    = kaigara/gerrit
-VERSION = 0.0.1
+VERSION ?= $(shell git describe --tags --abbrev=0 | tr -d 'v' 2>/dev/null)
 
 build:
 	docker build -t $(NAME):$(VERSION) --rm .
@@ -7,7 +7,7 @@ build:
 
 start: build
 	docker run --rm -it -p 8080:8080 -p 29418:29418 \
-		-v $(CURDIR)/config.yaml:/etc/kaigara/metadata/config.yaml $(NAME)
+		-v $(CURDIR)/defaults.yaml:/etc/kaigara/metadata/config.yaml $(NAME)
 
 clean:
 	-docker rmi -f $(NAME):$(VERSION)
