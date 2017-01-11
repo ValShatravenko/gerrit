@@ -1,21 +1,50 @@
 [gerrit]
   basePath = {{.gerrit.basePath}}
   canonicalWebUrl = http://localhost:8080/
+
 [database]
   type = {{.database.type}}
-	database = /var/gerrit/review_site/db/ReviewDB
+  database = {{.database.database}}
+{{- if .database.hostname }}
+  hostname = {{.database.hostname}}
+{{- end }}
+{{- if .database.port }}
+  port = {{.database.port}}
+{{- end }}
+{{- if .database.username }}
+  username = {{.database.username}}
+{{- end }}
+
 [auth]
-	type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+  type = {{.auth.type}}
+
+{{- if eq .auth.type "ldap" -}}
+[ldap]
+  server = ldap://{{ .auth.server }}
+  username = cn=admin,dc={{ .auth.dc }}
+  accountBase = ou=people,dc={{ .auth.dc }}
+  groupBase = ou=gerrit,ou=groups,dc={{ .auth.dc }}
+  accountFullName = ${givenName} ${sn}
+  accountEmailAddress = ${mail}
+{{- end }}
+
 [receive]
-	enableSignedPush = false
+  enableSignedPush = false
+
+{{- if .smtp.server -}}
 [sendemail]
-	smtpServer = localhost
+  smtpServer = {{.smtp.server}}
+{{- end }}
+
 [container]
-	user = gerrit2
-	javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
+  user = gerrit2
+  javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
+
 [sshd]
-	listenAddress = *:29418
+  listenAddress = *:29418
+
 [httpd]
-	listenUrl = http://*:8080/
+  listenUrl = http://*:8080/
+
 [cache]
-	directory = cache
+  directory = cache
