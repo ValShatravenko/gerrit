@@ -1,5 +1,6 @@
 NAME    = kaigara/gerrit
-VERSION ?= $(shell git describe --tags --abbrev=0 | tr -d 'v' 2>/dev/null)
+VERSION ?= $(shell git describe --tags --abbrev=0 2> /dev/null || echo "dev")
+VERSION := $(shell echo ${VERSION} | sed -r s/^v//)
 
 build:
 	docker build -t $(NAME):$(VERSION) --rm .

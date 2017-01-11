@@ -22,16 +22,16 @@ COPY bin/gerrit-start.sh /usr/local/bin/gerrit-start.sh
 # Install Gerrit plugins
 WORKDIR ${GERRIT_HOME}/plugins
 
-RUN wget https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar
-RUN wget https://gerrit-ci.gerritforge.com/job/plugin-delete-project-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/delete-project/delete-project.jar
-RUN wget https://gerrit-ci.gerritforge.com/job/plugin-project-download-commands-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/project-download-commands/project-download-commands.jar
+RUN wget -q https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar
+RUN wget -q https://gerrit-ci.gerritforge.com/job/plugin-delete-project-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/delete-project/delete-project.jar
+RUN wget -q https://gerrit-ci.gerritforge.com/job/plugin-project-download-commands-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/project-download-commands/project-download-commands.jar
 
 # Install Gerrit
 WORKDIR ${GERRIT_HOME}
-RUN wget https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
+RUN wget -q https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
 
 # Install Kaigara
-RUN curl -L https://kaigara.org/get | sh
+RUN curl -sL https://kaigara.org/get | sh
 COPY operations /opt/kaigara/operations
 COPY resources /etc/kaigara/resources
 
