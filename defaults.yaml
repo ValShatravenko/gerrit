@@ -1,6 +1,7 @@
 gerrit:
   basePath: "/var/gerrit/review_site/git"
   canonicalWebUrl: "http://localhost:8080/"
+  sshPort: 29418
 auth:
   type: DEVELOPMENT_BECOME_ANY_ACCOUNT
 database:

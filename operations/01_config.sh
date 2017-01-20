@@ -3,6 +3,7 @@
 set -x
 
 kaigara render gerrit.config > ${GERRIT_SITE}/etc/gerrit.config
+kaigara render secure.config > ${GERRIT_SITE}/etc/secure.config
 
 echo "Render configuration"
 cat ${GERRIT_SITE}/etc/gerrit.config

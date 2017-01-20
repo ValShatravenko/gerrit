@@ -1,0 +1,9 @@
+{{- if .database.password -}}
+[database]
+  password = {{ .database.password }}
+{{- end }}
+
+{{ if eq .auth.type "ldap" -}}
+[ldap]
+  password = {{ .auth.password }}
+{{- end }}

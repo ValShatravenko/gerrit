@@ -1,6 +1,8 @@
 [gerrit]
   basePath = {{.gerrit.basePath}}
-  canonicalWebUrl = http://localhost:8080/
+{{- if .gerrit.canonicalWebUrl }}
+  canonicalWebUrl = {{.gerrit.canonicalWebUrl}}
+{{- end}}
 
 [database]
   type = {{.database.type}}
@@ -18,7 +20,7 @@
 [auth]
   type = {{.auth.type}}
 
-{{- if eq .auth.type "ldap" -}}
+{{ if eq .auth.type "ldap" -}}
 [ldap]
   server = ldap://{{ .auth.server }}
   username = cn=admin,dc={{ .auth.dc }}
@@ -31,13 +33,13 @@
 [receive]
   enableSignedPush = false
 
-{{- if .smtp.server -}}
+{{ if .smtp.server -}}
 [sendemail]
   smtpServer = {{.smtp.server}}
 {{- end }}
 
 [container]
-  user = gerrit2
+  user = gerrit
   javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
 
 [sshd]
