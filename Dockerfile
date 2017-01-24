@@ -17,18 +17,19 @@ RUN mkdir -p ${GERRIT_HOME}/plugins \
              ${GERRIT_SITE}/plugins \
              ${GERRIT_SITE}/etc
 
-COPY bin/gerrit-start.sh /usr/local/bin/gerrit-start.sh
-
 # Install Gerrit plugins
-WORKDIR ${GERRIT_HOME}/plugins
 
-RUN wget -q    https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar \
+RUN cd ${GERRIT_HOME}/plugins \
+    && wget -q https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar \
     && wget -q https://gerrit-ci.gerritforge.com/job/plugin-delete-project-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/delete-project/delete-project.jar \
-    && wget -q https://gerrit-ci.gerritforge.com/job/plugin-project-download-commands-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/project-download-commands/project-download-commands.jar
+    && wget -q https://gerrit-ci.gerritforge.com/job/plugin-project-download-commands-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/project-download-commands/project-download-commands.jar \
+    && wget -q https://github.com/davido/gerrit-oauth-provider/releases/download/v2.13.2/gerrit-oauth-provider.jar
 
 # Install Gerrit
 WORKDIR ${GERRIT_HOME}
 RUN wget -q https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -O ${GERRIT_WAR}
+
+COPY bin/gerrit-start.sh /usr/local/bin/gerrit-start.sh
 
 # Install Kaigara
 RUN curl -sL https://kaigara.org/get | sh
@@ -39,10 +40,10 @@ RUN chown -R ${GERRIT_USER}:${GERRIT_USER} ${GERRIT_HOME}
 
 USER ${GERRIT_USER}
 
-# Add OctoGerrit
-ADD GerritSite.css ${GERRIT_HOME}
-ADD GerritSiteFooter.html ${GERRIT_HOME}
-ADD octogerrit.js ${GERRIT_HOME}
+# Add Theme files
+ADD theme/GerritSite.css ${GERRIT_HOME}
+ADD theme/GerritSiteFooter.html ${GERRIT_HOME}
+ADD theme/octogerrit.js ${GERRIT_HOME}
 
 EXPOSE 8080 29418
 
