@@ -3,7 +3,7 @@ Gerrit code review enterprise image
 
 ## Run the image locally with docker
 
-`docker run -d kaigara/gerrit`
+`docker run -v $(pwd)/defaults.yaml:/etc/kaigara/metadata/defaults.yaml -d kaigara/gerrit`
 
 ## Credits
 

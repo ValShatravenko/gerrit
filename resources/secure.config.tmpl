@@ -7,3 +7,23 @@
 [ldap]
   password = {{ .auth.password }}
 {{- end }}
+
+{{ if .auth.google -}}
+[plugin "gerrit-oauth-provider-google-oauth"]
+  client-secret = {{ .auth.google.client_secret }}
+{{- end }}
+
+{{ if .auth.github -}}
+[plugin "gerrit-oauth-provider-github-oauth"]
+  client-secret = {{ .auth.github.client_secret }}
+{{- end }}
+
+{{ if .auth.bitbucket -}}
+[plugin "gerrit-oauth-provider-bitbucket-oauth"]
+  client-secret = {{ .auth.bitbucket.client_secret }}
+{{- end }}
+
+{{ if .auth.cas -}}
+[plugin "gerrit-oauth-provider-cas-oauth"]
+  client-secret = {{ .auth.cas.client_secret }}
+{{- end }}

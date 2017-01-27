@@ -50,3 +50,25 @@
 
 [cache]
   directory = cache
+
+{{ if .auth.google -}}
+[plugin "gerrit-oauth-provider-google-oauth"]
+  link-to-existing-openid-accounts = {{ .auth.google.link_to_existing_openid_accounts }}
+  client-id = {{ .auth.google.client_id }}
+{{- end }}
+
+{{ if .auth.github -}}
+[plugin "gerrit-oauth-provider-github-oauth"]
+  client-id = {{ .auth.github.client_id }}
+{{- end }}
+
+{{ if .auth.bitbucket -}}
+[plugin "gerrit-oauth-provider-bitbucket-oauth"]
+  client-id = {{ .auth.bitbucket.client_id }}
+{{- end }}
+
+{{ if .auth.cas -}}
+[plugin "gerrit-oauth-provider-cas-oauth"]
+  root-url = {{ .auth.cas.root_url }}
+  client-id = {{ .auth.cas.client_id }}
+{{- end }}
