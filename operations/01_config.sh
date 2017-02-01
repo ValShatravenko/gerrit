@@ -34,7 +34,8 @@ mkdir -p ${GERRIT_SITE}/{etc,static}
 
 mv ${GERRIT_HOME}/GerritSite.css        ${GERRIT_SITE}/etc/
 mv ${GERRIT_HOME}/GerritSiteFooter.html ${GERRIT_SITE}/etc/
-mv ${GERRIT_HOME}/octogerrit.js         ${GERRIT_SITE}/static/
+mv ${GERRIT_HOME}/logo.png              ${GERRIT_SITE}/static/
+mv ${GERRIT_HOME}/gerrit.js             ${GERRIT_SITE}/static/
 
 set +x
 echo "==================================================="

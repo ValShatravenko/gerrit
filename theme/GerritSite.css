@@ -165,6 +165,12 @@ table.topmenu td.topmenuTDmenu {
 table.topmenu td.topmenuTDmenu:first-child {
   float: right;
 }
+div.topmenuMenuRight::before {
+  content: url(static/logo.png);
+  position: absolute;
+  left: -45%;
+  top:  15%;
+}
 div.searchPanel {
   background-color: #fff;
   background-position: right 8px center;

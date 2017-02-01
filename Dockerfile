@@ -43,9 +43,10 @@ RUN chown -R ${GERRIT_USER}:${GERRIT_USER} ${GERRIT_HOME}
 USER ${GERRIT_USER}
 
 # Add Theme files
-ADD theme/GerritSite.css ${GERRIT_HOME}
+ADD theme/GerritSite.css        ${GERRIT_HOME}
 ADD theme/GerritSiteFooter.html ${GERRIT_HOME}
-ADD theme/octogerrit.js ${GERRIT_HOME}
+ADD theme/logo.png              ${GERRIT_HOME}
+ADD theme/gerrit.js             ${GERRIT_HOME}
 
 EXPOSE 8080 29418
 
