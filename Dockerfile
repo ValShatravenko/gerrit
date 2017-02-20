@@ -20,7 +20,7 @@ RUN mkdir -p ${GERRIT_HOME}/plugins \
 # Install Gerrit plugins
 
 RUN cd ${GERRIT_HOME}/plugins \
-    && wget -q https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-master/lastSuccessfulBuild/artifact/buck-out/gen/plugins/serviceuser/serviceuser.jar \
+    && wget -q https://gerrit-ci.gerritforge.com/job/plugin-serviceuser-bazel-master/lastSuccessfulBuild/artifact/bazel-genfiles/plugins/serviceuser/serviceuser.jar \
     && wget -q https://gerrit-ci.gerritforge.com/job/plugin-delete-project-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/delete-project/delete-project.jar \
     && wget -q https://gerrit-ci.gerritforge.com/job/plugin-project-download-commands-stable-2.13/lastSuccessfulBuild/artifact/buck-out/gen/plugins/project-download-commands/project-download-commands.jar \
     && wget -q https://github.com/davido/gerrit-oauth-provider/releases/download/v2.13.2/gerrit-oauth-provider.jar
